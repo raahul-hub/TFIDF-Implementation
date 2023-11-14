@@ -1,52 +1,31 @@
 # TFIDF-Implementation
 
-Tf-idf stands for term frequency-inverse document frequency, and it is a weight commonly utilized in information retrieval and text mining. This weight serves as a statistical measure to determine the importance of a word within a document in a given collection or corpus. The calculation takes into account both the frequency of the word within the document and its frequency across the entire corpus. In essence, tf-idf helps evaluate how significant a word is to a specific document relative to its occurrence in a larger body of text.
+# TF-IDF (Term Frequency-Inverse Document Frequency)
 
-This measure is particularly valuable for search engines, playing a crucial role in scoring and ranking the relevance of a document in response to a user's query. The basic ranking function involves summing the tf-idf scores for each term in the query, and more sophisticated ranking models often build upon this foundation. Tf-idf is also useful for tasks such as stop-word filtering in various domains, including text summarization and classification.
+TF-IDF is a numerical statistic that reflects the importance of a word in a document relative to a collection of documents (corpus). It is commonly used in information retrieval and text mining.
+
+## Term Frequency (TF)
+
+Term Frequency measures how often a term (word) appears in a document. It is calculated as the number of times a term appears in a document divided by the total number of terms in that document.
+
+\[ \text{TF}(t, d) = \frac{\text{Number of times term \(t\) appears in document \(d\)}}{\text{Total number of terms in document \(d\)}} \]
+
+## Inverse Document Frequency (IDF)
+
+Inverse Document Frequency measures how important a term is across the entire corpus. Terms that appear in many documents will have a lower IDF, while terms that appear in fewer documents will have a higher IDF.
+
+\[ \text{IDF}(t, D) = \log\left(\frac{\text{Total number of documents in the corpus \(N\)}}{\text{Number of documents containing term \(t\) + 1}}\right) \]
+
+(Note: Adding 1 to the denominator is a smoothing technique to avoid division by zero.)
+
+## TF-IDF
+
+The TF-IDF score for a term \(t\) in a document \(d\) is the product of TF and IDF:
+
+\[ \text{TF-IDF}(t, d, D) = \text{TF}(t, d) \times \text{IDF}(t, D) \]
 
 
-The tf-idf (term frequency-inverse document frequency) score for a term in a document within a collection or corpus is calculated using the following formula:
-
-\text{tf-idf}(t, d, D) = \text{tf}(t, d) \times \text{idf}(t, D)tf-idf(t,d,D)=tf(t,d)×idf(t,D)
-
-Where:
-
-\text{tf}(t, d)tf(t,d) is the term frequency, representing the number of times term tt appears in document dd.
-\text{idf}(t, D)idf(t,D) is the inverse document frequency, which is calculated as follows:
-\text{idf}(t, D) = \log\left(\frac{N}{\text{df}(t, D)}\right)idf(t,D)=log( 
-df(t,D)
-N
-​
- )
-
-Where:
-
-NN is the total number of documents in the corpus.
-\text{df}(t, D)df(t,D) is the document frequency, representing the number of documents in the corpus that contain term tt.
-Here's a step-by-step guide to calculate tf-idf for a term in a document:
-
-Calculate Term Frequency (tf):
-\text{tf}(t, d) = \frac{\text{Number of times term } t \text{ appears in document } d}{\text{Total number of terms in document } d}tf(t,d)= 
-Total number of terms in document d
-Number of times term t appears in document d
-​
- 
-
-Calculate Document Frequency (df):
-Count the number of documents in the corpus that contain the term tt.
-
-Calculate Inverse Document Frequency (idf):
-\text{idf}(t, D) = \log\left(\frac{N}{\text{df}(t, D)}\right)idf(t,D)=log( 
-df(t,D)
-N
-​
- )
-
-Compute tf-idf:
-\text{tf-idf}(t, d, D) = \text{tf}(t, d) \times \text{idf}(t, D)tf-idf(t,d,D)=tf(t,d)×idf(t,D)
-
-Repeat this process for each term in the document, and you will obtain the tf-idf vector representing the document in the corpus. Keep in mind that variations of this formula exist, and the logarithm base and potential smoothing methods may vary depending on specific implementations.
-
+Lets implement this with Python
 
 
 
